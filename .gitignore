@@ -80,7 +80,9 @@ target/
 # IPython
 profile_default/
 ipython_config.py
-
+outside_data/
+data/
+logs/*
 # pyenv
 .python-version
 
