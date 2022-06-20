@@ -1,5 +1,5 @@
 stages:
- stage_name:
+  get_data:
    cmd: python src\stage_01_get_data.py --config=configs/config.yaml
    deps:
    - src/stage_01_get_data.py
@@ -8,3 +8,17 @@ stages:
    outs:
    - data/cat
    - data/dog
+  prepare_model:
+   cmd: python src\stage_02_prepare_base_model.py --config=configs/config.yaml --params=params.yaml
+   deps:
+   - src\stage_02_prepare_base_model.py
+   - src/utils/common.py
+   - configs/config.yaml
+   - data/cat
+   - data/dog
+   params:
+     - IMAGE_SIZE
+     - LEARNING_RATE
+   outs:
+     - artifacts/base_model/base_model.h5
+     - artifacts/base_model/updated_base_model.h5

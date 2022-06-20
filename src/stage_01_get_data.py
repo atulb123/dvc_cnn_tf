@@ -16,7 +16,7 @@ logging.basicConfig(
 )
 
 
-def get_data(config_path, params_path):
+def get_data(config_path):
     ## read config files
     config = read_yaml(config_path)
     source_download_dirs = config["source_download_dirs"]
@@ -32,13 +32,12 @@ def get_data(config_path, params_path):
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
     args.add_argument("--config", "-c", default="configs/config.yaml")
-    args.add_argument("--params", "-p", default="params.yaml")
     parsed_args = args.parse_args()
 
     try:
         logging.info("\n********************")
         logging.info(f">>>>> stage {STAGE} started <<<<<")
-        get_data(config_path=parsed_args.config, params_path=parsed_args.params)
+        get_data(config_path=parsed_args.config)
         logging.info(f">>>>> stage {STAGE} completed!<<<<<\n")
     except Exception as e:
         logging.exception(e)
