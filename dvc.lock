@@ -31,8 +31,8 @@ stages:
       md5: 8f19ea4b46c73047dc29d53b138a5e86
       size: 1296
     - path: src/utils/common.py
-      md5: 7d39c65a66e0911745f862474d060083
-      size: 986
+      md5: 2af503e6b7a2b874fa99073e4327e318
+      size: 1326
     outs:
     - path: data/cat
       md5: 59bfed4cafc791ee16a2d47097607129.dir
@@ -57,8 +57,8 @@ stages:
       size: 266969
       nfiles: 10
     - path: src/utils/common.py
-      md5: 7d39c65a66e0911745f862474d060083
-      size: 986
+      md5: 2af503e6b7a2b874fa99073e4327e318
+      size: 1326
     - path: src\stage_02_prepare_base_model.py
       md5: 8943ca1efc4cf29e5067fe25c6fd6082
       size: 2014
@@ -71,8 +71,33 @@ stages:
         LEARNING_RATE: 0.001
     outs:
     - path: artifacts/base_model/base_model.h5
-      md5: 71322d304f25c292163b06ababc4d041
+      md5: 922ef7e0db8718dd2e26f79deeb86ccb
       size: 58920232
     - path: artifacts/base_model/updated_base_model.h5
-      md5: 8b4b7622dd1e9af4a7e9c63f846a84a7
+      md5: aae3ba152508d52936f9179373302af7
       size: 59131968
+  prepare_callback:
+    cmd: python src/stage_03_prepare_callback.py --config=configs/config.yaml
+    deps:
+    - path: configs/config.yaml
+      md5: 8e72450785fb94aa875f3ec78853811c
+      size: 496
+    - path: params.yaml
+      md5: 2a8f6fe05b316530ae2a27912d83fa2a
+      size: 216
+    - path: src/stage_03_prepare_callback.py
+      md5: e3e8ef3885799ae90e9ba10d18f7efe5
+      size: 1328
+    - path: src/utils/callbacks.py
+      md5: 94838d7a2faf6597ab99c0e9bbc5cd2b
+      size: 2159
+    - path: src/utils/common.py
+      md5: 2af503e6b7a2b874fa99073e4327e318
+      size: 1326
+    outs:
+    - path: artifacts/callbacks/checkpoint_cb.cb
+      md5: 1be6234a6fe46f2ae49e96b0922fdcd5
+      size: 718
+    - path: artifacts/callbacks/tensorboard_cb.cb
+      md5: 2ed7bd83e07e161bd39ea9f05e9ebd6f
+      size: 549

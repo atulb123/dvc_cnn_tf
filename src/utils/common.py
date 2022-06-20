@@ -34,3 +34,14 @@ def copy_files(src_file_dir, dest_file_dir):
         dest = os.path.join(dest_file_dir, file)
         shutil.copy(src, dest)
     logging.info("copying of files successed")
+
+def get_timestamp(name: str) -> str:
+    """create unique name with timestamp
+    Args:
+        name (str): name of file or directory
+    Returns:
+        str: unique name with timestamp
+    """
+    timestamp = time.asctime().replace(" ", "_").replace(":", ".")
+    unique_name = f"{name}_at_{timestamp}"
+    return unique_name
